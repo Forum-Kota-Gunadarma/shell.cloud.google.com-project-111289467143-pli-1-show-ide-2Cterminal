@@ -16,3 +16,14 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+function getActiveBudgetOrder() {
+  // There will only be one active budget order at any given time.
+  var budgetOrderIterator = AdsApp.budgetOrders()
+      .withCondition('status="ACTIVE"')
+      .get();
+  while (budgetOrderIterator.hasNext()) {
+    var budgetOrder = budgetOrderIterator.next();
+    Logger.log("Budget Order [" + budgetOrder.getName() +
+        "] is currently active.");
+  }
+}
